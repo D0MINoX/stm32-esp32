@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MIM.MainPage"
+             BackgroundColor="#121212">
+
+    <!-- Główny układ podzielony na 3 kolumny dla Desktopu -->
+    <Grid ColumnDefinitions="300, *, 250" 
+          Padding="15" 
+          ColumnSpacing="20">
+
+        <!-- ========================================== -->
+        <!-- KOLUMNA 1: Wykresy prędkości silników (Lewa)-->
+        <!-- ========================================== -->
+        <ScrollView Grid.Column="0" VerticalScrollBarVisibility="Always">
+            <VerticalStackLayout Spacing="15">
+
+                <Label Text="Czujniki Ultradźwiękowe" FontSize="20" FontAttributes="Bold" TextColor="#E0E0E0" Margin="0,0,0,5" />
+
+                <Border BackgroundColor="#1E1E1E" Stroke="#333333" StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Czujnik 1 (Lewy)" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding SensorDistance1, StringFormat='{0:F1} cm'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#333333" Margin="0,2" />
+
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Czujnik 2 (Prawy)" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding SensorDistance2, StringFormat='{0:F1} cm'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="Stan Silników" FontSize="20" FontAttributes="Bold" TextColor="#E0E0E0" Margin="0,10,0,5" />
+                <Border BackgroundColor="#1E1E1E" Stroke="#333333" StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Silnik FL (Przedni Lewy)" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding MotorSpeedFL, StringFormat='{0:F3} m/s'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#333333" Margin="0,2" />
+
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Silnik FR (Przedni Prawy" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding MotorSpeedFR, StringFormat='{0:F3} m/s'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+                        <BoxView HeightRequest="1" Color="#333333" Margin="0,2" />
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Silnik RL (Tylny Lewy)" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding MotorSpeedRL, StringFormat='{0:F3} m/s'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#333333" Margin="0,2" />
+
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Silnik RR (Tylny Prawy" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding MotorSpeedRR, StringFormat='{0:F3} m/s'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+                        <BoxView HeightRequest="1" Color="#333333" Margin="0,2" />
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Prędkość liniowa" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding LinearSpeed, StringFormat='{0:F3} m/s'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#333333" Margin="0,2" />
+
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Prędkość obrotowa" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding RotationalSpeed, StringFormat='{0:F3} rad/s'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+                <Label Text="Temperatury" FontSize="20" FontAttributes="Bold" TextColor="#E0E0E0" Margin="0,0,0,5" />
+
+                <Border BackgroundColor="#1E1E1E" Stroke="#333333" StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Temperatura wewnątrz" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding InternalTemp, StringFormat='{0:F1}°C'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#333333" Margin="0,2" />
+
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Temperatura procesora STM" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding STMTemp, StringFormat='{0:F1}°C'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+                        <BoxView HeightRequest="1" Color="#333333" Margin="0,2" />
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Temperatura procesora ESP" TextColor="#AAAAAA" FontSize="13" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding ESPTemp, StringFormat='{0:F1}°C'}" TextColor="#4CAF50" FontSize="22" FontAttributes="Bold" Margin="0,2,0,0"/>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ========================================== -->
+        <!-- KOLUMNA 2: Główny panel kamery (Środek)  -->
+        <!-- ========================================== -->
+        <Border Grid.Column="1" 
+                BackgroundColor="#000000" 
+                Stroke="#333333" 
+                StrokeThickness="1" 
+                StrokeShape="RoundRectangle 12">
+
+            <Grid Grid.Column="1" RowDefinitions="*, Auto">
+
+                <Border Grid.Row="0" BackgroundColor="Black" StrokeShape="RoundRectangle 12">
+                    <WebView Source="{Binding IpAddress, StringFormat='http://{0}:80'}"
+                         WidthRequest="1280"
+                         HeightRequest="720"
+                         HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="CenterAndExpand" />
+                </Border>
+
+                <Border Grid.Row="1" 
+            Margin="0,20,0,0" 
+            Padding="15" 
+            BackgroundColor="#1E1E1E" 
+            Stroke="#333333" 
+            StrokeShape="RoundRectangle 8">
+
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Konsola Testowa (Bluetooth)" TextColor="Gray" FontSize="12" />
+
+                        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                            <Entry Grid.Column="0" 
+                       Placeholder="Wpisz komendę (np. W, S, STOP)" 
+                       Text="{Binding ManualCommand}" 
+                       TextColor="White"
+                       PlaceholderColor="DimGray"
+                       BackgroundColor="#121212" />
+
+                            <Button Grid.Column="1" 
+                        Text="WYŚLIJ" 
+                        Command="{Binding SendManualCommand}" 
+                        BackgroundColor="#2B579A" 
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        WidthRequest="120" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+        </Border>
+
+
+       
+
+            <Grid  Grid.Column="2" RowDefinitions="Auto, Auto, *, Auto" RowSpacing="15">
+
+
+                <!-- Panel przycisków i statusu -->
+                <VerticalStackLayout Grid.Row="3" Spacing="10">
+
+                    <!-- Kontrolka statusu LED -->
+                    <Border BackgroundColor="#252525" Stroke="Transparent" StrokeShape="RoundRectangle 6" Padding="10">
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                            <Ellipse WidthRequest="12" HeightRequest="12" Fill="{Binding ConnectionStatusColor}" VerticalOptions="Center" />
+                            <Label Text="{Binding ConnectionStatusText}" TextColor="#E0E0E0" VerticalOptions="Center" FontSize="13" FontAttributes="Bold"/>
+                        </HorizontalStackLayout>
+                    </Border>
+
+                    <Button Text="Połącz" 
+                            Command="{Binding ConnectCommand}" 
+                            BackgroundColor="#4CAF50" 
+                            TextColor="White" 
+                            CornerRadius="6" 
+                            FontAttributes="Bold"/>
+
+                    <Button Text="Rozłącz" 
+                            Command="{Binding DisconnectCommand}" 
+                            BackgroundColor="#F44336" 
+                            TextColor="White" 
+                            CornerRadius="6" 
+                            FontAttributes="Bold"/>
+                </VerticalStackLayout>
+            </Grid>
+      
+
+    </Grid>
+
+</ContentPage>
